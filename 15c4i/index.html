@@ -107,10 +107,15 @@ svg text{font-family:var(--mono)}
 .wp-info h3{font-family:var(--disp);font-weight:600;font-size:14.5px;color:var(--gold)}
 .wp-info .km{font-family:var(--mono);font-size:11px;color:var(--cream-dim);font-weight:400;margin-left:6px}
 .wp-info p{font-size:13.5px;color:var(--cream-dim);margin-top:4px}
-.photo{margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid var(--crimson-soft);background:var(--maroon)}
+.views{display:flex;gap:6px;padding:0 6px 10px;border-bottom:1px solid var(--crimson-soft);margin:0 6px 10px}
+.views button{font-family:var(--disp);font-size:11.5px;letter-spacing:.06em;padding:7px 12px;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--cream-dim);cursor:pointer}
+.views button.on{background:var(--ink);border-color:var(--crimson-soft);color:var(--gold)}
+.views.nosat button[data-view="sat"]{display:none}
+.map-card.sat .schem,.map-card.sat .legs,.map-card.sat .wp-info{display:none}
+.map-card:not(.sat) .photo{display:none}
+.photo{margin:0 6px 10px;border-radius:12px;overflow:hidden;border:1px solid var(--crimson-soft);background:var(--ink)}
 .photo img{display:block;width:100%;height:auto}
 .photo figcaption{font-family:var(--mono);font-size:11px;color:var(--cream-dim);padding:8px 12px}
-.photo.missing{display:none}
 
 /* need to know */
 .info{margin-top:8px}
@@ -186,7 +191,7 @@ svg text{font-family:var(--mono)}
 
 <!-- ================= PART 1 ================= -->
 <h2 id="part1">Part 1 &mdash; Launch of New Facility Ceremony</h2>
-<p class="sub">Div Comd and Div PSOs join us at Blk 7 for the unveiling of Panthera HQ. Attire: Smart 4. Timings in the programme highlight live on the day.</p>
+<p class="sub">Attire: Smart 4.</p>
 <div class="rule"></div>
 <ul class="tl" data-day="2026-09-15">
   <li data-t="11:45"><span class="node"></span><div><b><span class="t">1145H</span>Arrival of Div Comd &amp; Div PSOs</b><p>Battalion formed up and in position before arrival.</p></div></li>
@@ -215,13 +220,17 @@ svg text{font-family:var(--mono)}
 <!-- ================= GETTING THERE ================= -->
 <h2>Getting there</h2>
 <p class="sub">Drive in via the Clementi Camp guard room off Clementi Ave 6, park at Carpark B, then walk up the slope to Blk 7 (Old K9 Hill). Tap a leg pill or a dot for details.</p>
-<div class="map-card">
+<div class="map-card" id="mapcard">
+  <div class="views nosat" id="views">
+    <button data-view="schem" class="on">Schematic</button>
+    <button data-view="sat">Satellite</button>
+  </div>
   <div class="legs" id="legs">
     <button data-leg="all" class="on">Full route</button>
     <button data-leg="l1">1 &middot; Drive in</button>
     <button data-leg="l2">2 &middot; Walk up</button>
   </div>
-  <svg viewBox="0 0 380 540" width="100%" role="img" aria-label="Schematic map of Clementi Camp showing the drive from the guard room to Carpark B and the walk up the slope to Block 7">
+  <svg class="schem" viewBox="0 0 380 540" width="100%" role="img" aria-label="Schematic map of Clementi Camp showing the drive from the guard room to Carpark B and the walk up the slope to Block 7">
     <text x="24" y="30" fill="#CFAFA8" font-size="10" letter-spacing="2">CLEMENTI CAMP &middot; SCHEMATIC</text>
     <text x="356" y="30" text-anchor="end" fill="#D9A94A" font-size="11">N &uarr;</text>
 
@@ -277,11 +286,11 @@ svg text{font-family:var(--mono)}
     <h3 id="wpt">Clementi Camp guard room <span class="km" id="wpk">entry &middot; Clementi Ave 6</span></h3>
     <p id="wpp">Enter the camp via the guard room on Clementi Ave 6. Follow the internal road north, then turn left towards Carpark B.</p>
   </div>
+  <figure class="photo" id="photo">
+    <img src="map.jpg" alt="Satellite view of Clementi Camp with the drive-in route to Carpark B and the walk up the slope to Blk 7 marked" onload="document.getElementById('views').classList.remove('nosat')">
+    <figcaption>Satellite view &middot; red = drive in to Carpark B &middot; green = walk up slope to Blk 7</figcaption>
+  </figure>
 </div>
-<figure class="photo" id="photo">
-  <img src="map.jpg" alt="Satellite view of Clementi Camp with the drive-in route to Carpark B and the walk up the slope to Blk 7 marked" onerror="document.getElementById('photo').classList.add('missing')">
-  <figcaption>Satellite view &middot; red = drive in to Carpark B &middot; green = walk up slope to Blk 7</figcaption>
-</figure>
 
 <!-- ================= NEED TO KNOW ================= -->
 <h2>Need to know</h2>
@@ -369,6 +378,15 @@ svg text{font-family:var(--mono)}
     });
   });
   trks.forEach(function(t){t.classList.add('lit')});
+
+  var card=document.getElementById('mapcard');
+  document.querySelectorAll('#views button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#views button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      card.classList.toggle('sat',b.dataset.view==='sat');
+    });
+  });
 })();
 </script>
 </body>
