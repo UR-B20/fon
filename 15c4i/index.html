@@ -60,14 +60,6 @@ h2{font-family:var(--disp);font-weight:600;font-size:19px;margin:38px 0 4px;lett
 .sub{font-size:13.5px;color:var(--cream-dim);margin-bottom:14px}
 .rule{height:1px;background:linear-gradient(90deg,var(--crimson),transparent);margin:6px 0 14px}
 
-/* attire */
-.attire{margin:16px 0 0;background:var(--crimson);border:1px solid var(--gold);border-radius:14px;padding:6px 16px;box-shadow:0 0 0 4px var(--maroon)}
-.attire div{display:grid;grid-template-columns:86px 1fr;align-items:baseline;gap:12px;padding:11px 0}
-.attire div+div{border-top:1px solid rgba(246,237,226,.22)}
-.attire dt{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
-.attire dd{font-family:var(--disp);font-weight:700;font-size:21px;line-height:1.15;color:var(--white)}
-.attire dd small{display:block;font-family:var(--body);font-weight:400;font-size:12.5px;color:var(--cream);opacity:.85;margin-top:2px}
-
 /* part cards */
 .parts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0}
 .part{display:block;text-decoration:none;color:var(--cream);background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:14px;padding:14px 12px 12px}
@@ -75,6 +67,15 @@ h2{font-family:var(--disp);font-weight:600;font-size:19px;margin:38px 0 4px;lett
 .part b{font-family:var(--disp);font-weight:600;font-size:14px;display:block;margin:4px 0 6px;line-height:1.3}
 .part .t{font-family:var(--mono);font-size:12px;color:var(--cream-dim)}
 .part .t em{font-style:normal;color:var(--gold-soft)}
+.parts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.parts.attire{margin-top:10px}
+.parts.attire .part b{font-size:17px;color:var(--gold-soft)}
+
+/* quick menu */
+.menu{display:flex;gap:8px;margin:18px 0 0}
+.menu a{flex:1;text-align:center;font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.04em;padding:11px 6px;border-radius:10px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;background:var(--maroon)}
+.menu a:active{background:var(--crimson)}
+h2,.parts.attire{scroll-margin-top:16px}
 
 /* timeline */
 .tl{list-style:none;margin-top:10px}
@@ -177,19 +178,19 @@ svg text{font-family:var(--mono)}
     <span class="chip">Old K9 Hill</span>
     <span class="chip">Carpark B</span>
   </div>
+  <nav class="menu" aria-label="Quick links">
+    <a href="#events">Table of Events</a>
+    <a href="#directions">Directions</a>
+    <a href="#attire">Attire</a>
+  </nav>
   <div class="count" id="count">
     <div><b id="cd">&ndash;</b><span>days</span></div>
     <div><b id="ch">&ndash;</b><span>hrs</span></div>
     <div><b id="cm">&ndash;</b><span>min</span></div>
     <div><b id="cs">&ndash;</b><span>sec</span></div>
   </div>
-  <dl class="attire">
-    <div><dt>Attire</dt><dd>Smart 4<small>Part 1 &middot; Launch of New Facility Ceremony</small></dd></div>
-    <div><dt>Attire</dt><dd>Admin<small>Part 2 &middot; Battalion Anniversary Celebration</small></dd></div>
-    <div><dt>Guests</dt><dd>Casual<small>Guests attend Part 2 only</small></dd></div>
-  </dl>
   <div class="parts">
-    <a class="part" href="#part1">
+    <a class="part" href="#events">
       <span class="n">Part 1</span>
       <b>Launch of New Facility Ceremony</b>
       <span class="t"><em>1145H</em> &ndash; 1300H</span>
@@ -200,10 +201,15 @@ svg text{font-family:var(--mono)}
       <span class="t"><em>1800H</em> &ndash; 2100H</span>
     </a>
   </div>
+  <div class="parts three attire" id="attire">
+    <div class="part"><span class="n">Part 1</span><b>Smart 4</b><span class="t">Attire</span></div>
+    <div class="part"><span class="n">Part 2</span><b>Admin</b><span class="t">Attire</span></div>
+    <div class="part"><span class="n">Guests</span><b>Casual</b><span class="t">Attire</span></div>
+  </div>
 </header>
 
 <!-- ================= PART 1 ================= -->
-<h2 id="part1">Part 1 &mdash; Launch of New Facility Ceremony</h2>
+<h2 id="events">Part 1 &mdash; Launch of New Facility Ceremony</h2>
 <p class="sub">Attire: Smart 4.</p>
 <div class="rule"></div>
 <ul class="tl" data-day="2026-09-15">
@@ -220,7 +226,7 @@ svg text{font-family:var(--mono)}
 
 <!-- ================= PART 2 ================= -->
 <h2 id="part2">Part 2 &mdash; Battalion Anniversary Celebration</h2>
-<p class="sub">Back at Blk 7 from 1800H. Admin attire (guests: casual), games, then dinner and free &amp; easy.</p>
+<p class="sub">Back at Blk 7 from 1800H. Games, then dinner and free &amp; easy.</p>
 <div class="rule"></div>
 <ul class="tl" data-day="2026-09-15">
   <li data-t="18:00"><span class="node"></span><div><b><span class="t">1800H</span>Arrival</b><p>Park at Carpark B and walk up the slope to Blk 7.</p></div></li>
@@ -231,7 +237,7 @@ svg text{font-family:var(--mono)}
 </ul>
 
 <!-- ================= GETTING THERE ================= -->
-<h2>Getting there</h2>
+<h2 id="directions">Getting there</h2>
 <p class="sub">Drive in via the Clementi Camp guard room off Clementi Ave 6, park at Carpark B, then walk up the slope to Blk 7 (Old K9 Hill). Tap a leg pill or a dot for details.</p>
 <div class="map-card" id="mapcard">
   <div class="views nosat" id="views">
