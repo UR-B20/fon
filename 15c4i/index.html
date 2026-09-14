@@ -72,10 +72,33 @@ h2{font-family:var(--disp);font-weight:600;font-size:19px;margin:38px 0 4px;lett
 .parts.attire .part b{font-size:17px;color:var(--gold-soft)}
 
 /* quick menu */
-.menu{display:flex;gap:8px;margin:18px 0 0}
-.menu a{flex:1;text-align:center;font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.04em;padding:11px 6px;border-radius:10px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;background:var(--maroon)}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:18px 0 0}
+.menu a{text-align:center;font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.04em;padding:11px 6px;border-radius:10px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;background:var(--maroon)}
 .menu a:active{background:var(--crimson)}
 h2,.parts.attire{scroll-margin-top:16px}
+
+/* guest registration */
+.reg{background:var(--maroon);border:1px solid var(--gold);border-radius:14px;padding:16px;margin-top:6px}
+.reg p{font-size:14px;color:var(--cream)}
+.reg .btn{display:block;margin-top:12px;min-width:0}
+.reg .url{font-family:var(--mono);font-size:10.5px;color:var(--cream-dim);margin-top:10px;word-break:break-all}
+
+/* advisories */
+.adv{margin-top:8px}
+.adv > div{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 14px;background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:12px;margin-bottom:8px}
+.adv svg{width:20px;height:20px;margin-top:3px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.adv dt{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--cream)}
+.adv dd{font-size:13.5px;color:var(--cream-dim);margin-top:2px}
+.adv .no dt{color:var(--gold-soft)}
+
+/* menu (food) */
+.food{display:grid;gap:10px;margin-top:8px}
+.station{background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:14px;padding:14px 16px}
+.station h3{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--gold);letter-spacing:.04em}
+.station .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);display:block;margin-bottom:8px}
+.station ul{list-style:none;margin-top:8px;display:grid;gap:6px}
+.station li{font-size:14px;padding-left:16px;position:relative}
+.station li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--crimson)}
 
 /* timeline */
 .tl{list-style:none;margin-top:10px}
@@ -182,6 +205,9 @@ svg text{font-family:var(--mono)}
     <a href="#events">Table of Events</a>
     <a href="#directions">Directions</a>
     <a href="#attire">Attire</a>
+    <a href="#guests">Guest Registration</a>
+    <a href="#advisories">Advisories</a>
+    <a href="#menu">Dinner Menu</a>
   </nav>
   <div class="count" id="count">
     <div><b id="cd">&ndash;</b><span>days</span></div>
@@ -203,7 +229,7 @@ svg text{font-family:var(--mono)}
   </div>
   <div class="parts three attire" id="attire">
     <div class="part"><span class="n">Part 1</span><b>Smart 4</b><span class="t">Attire</span></div>
-    <div class="part"><span class="n">Part 2</span><b>Admin</b><span class="t">Attire</span></div>
+    <div class="part"><span class="n">Part 2</span><b>Admin attire</b><span class="t">&ldquo;15C4I BN&rdquo; T&#8209;shirt</span></div>
     <div class="part"><span class="n">Guests</span><b>Casual</b><span class="t">Attire</span></div>
   </div>
 </header>
@@ -226,12 +252,12 @@ svg text{font-family:var(--mono)}
 
 <!-- ================= PART 2 ================= -->
 <h2 id="part2">Part 2 &mdash; Battalion Anniversary Celebration</h2>
-<p class="sub">Back at Blk 7 from 1800H. Games, then dinner and free &amp; easy.</p>
+<p class="sub">Back at Blk 7 from 1800H. Activities, then dinner and free &amp; easy.</p>
 <div class="rule"></div>
 <ul class="tl" data-day="2026-09-15">
   <li data-t="18:00"><span class="node"></span><div><b><span class="t">1800H</span>Arrival</b><p>Park at Carpark B and walk up the slope to Blk 7.</p></div></li>
   <li data-t="18:10"><span class="node"></span><div><b><span class="t">1810H</span>Opening speech by CO, 15 C4I Bn</b></div></li>
-  <li data-t="18:20"><span class="node"></span><div><b><span class="t">1820H</span>Start of Game #1 &amp; #2</b></div></li>
+  <li data-t="18:20"><span class="node"></span><div><b><span class="t">1820H</span>Start of Activity #1 &amp; #2</b><p>Activity #1 &mdash; Coin Hunt<br>Activity #2 &mdash; Voting of Battalion T-shirt Competition</p></div></li>
   <li data-t="18:30"><span class="node"></span><div><b><span class="t">1830H</span>Start of dinner &middot; free &amp; easy</b></div></li>
   <li data-t="21:00"><span class="node"></span><div><b><span class="t">2100H</span>End of event</b></div></li>
 </ul>
@@ -311,27 +337,90 @@ svg text{font-family:var(--mono)}
   </figure>
 </div>
 
+<!-- ================= GUEST REGISTRATION ================= -->
+<h2 id="guests">Guest registration</h2>
+<div class="reg">
+  <p>Guests who require entry to Clementi Camp are to register in advance through the visitor registration link below.</p>
+  <a class="btn solid" href="https://visitor.vis.defence.gov.sg/#/?eventlink=85917b4587bb4036a7a450d27918392a" target="_blank" rel="noopener">Register as a guest</a>
+  <div class="url">visitor.vis.defence.gov.sg &middot; eventlink=85917b4587bb4036a7a450d27918392a</div>
+</div>
+
+<!-- ================= ADVISORIES ================= -->
+<h2 id="advisories">Event advisories</h2>
+<p class="sub">Please take note of the following for the duration of the event.</p>
+<dl class="adv">
+  <div class="no">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.2"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+    <div><dt>Photography and videography</dt><dd>Strictly not permitted. Authorised photographers will be on site to cover the event.</dd></div>
+  </div>
+  <div>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16M4 12h16"/></svg>
+    <div><dt>Restricted areas</dt><dd>Please remain within the event location at all times. Movement to other parts of the camp is not permitted.</dd></div>
+  </div>
+  <div>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+    <div><dt>Green Zone</dt><dd>Blk 7 is a Green Zone. Green Zone rules apply for the duration of the event.</dd></div>
+  </div>
+  <div>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14v3a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z"/><path d="M8 12V6a2 2 0 0 1 2-2h1"/><path d="M12 20v1M12 4v1"/></svg>
+    <div><dt>Toilets</dt><dd>Male and female toilets are located on the 1st storey of Blk 7 HQ.</dd></div>
+  </div>
+</dl>
+
+<!-- ================= DINNER MENU ================= -->
+<h2 id="menu">Dinner menu</h2>
+<p class="sub">Served from 1830H.</p>
+<div class="food">
+  <div class="station">
+    <span class="k">Live stations</span>
+    <ul>
+      <li>Churros</li>
+      <li>Crispy Taiwanese Chicken Cutlet</li>
+    </ul>
+  </div>
+  <div class="station">
+    <span class="k">Live BBQ buffet stations</span>
+    <ul>
+      <li>Black Pepper Chicken Winglet</li>
+      <li>BBQ Chicken Winglet</li>
+      <li>Marinated Garlic Prawns</li>
+      <li>Fish Otah</li>
+      <li>Chicken Hotdog</li>
+    </ul>
+  </div>
+  <div class="station">
+    <span class="k">Buffet line</span>
+    <ul>
+      <li>Thai Style Chicken Cutlet</li>
+      <li>Cocktail Spring Roll</li>
+      <li>Yang Chow Fried Rice</li>
+      <li>Spaghetti Aglio Olio with Mushroom &amp; Capsicum</li>
+      <li>Mini Chocolate Eclair</li>
+      <li>Mini Cream Puff</li>
+      <li>Ice Lemon Tea</li>
+    </ul>
+  </div>
+</div>
+
 <!-- ================= NEED TO KNOW ================= -->
 <h2>Need to know</h2>
 <p class="sub">The short version.</p>
 <dl class="info">
   <div><dt>Date</dt><dd>Tuesday 15 September 2026<small>Ceremony from 1145H &middot; celebration from 1800H</small></dd></div>
   <div><dt>Venue</dt><dd>Clementi Camp, Blk 7<small>Old K9 Hill</small></dd></div>
-  <div><dt>Attire</dt><dd>Part 1: Smart 4<small>Part 2: Admin attire &middot; Guests: Casual</small></dd></div>
+  <div><dt>Attire</dt><dd>Part 1: Smart 4<small>Part 2: Admin attire &mdash; &ldquo;15C4I BN&rdquo; T-shirt &middot; Guests: Casual</small></dd></div>
   <div><dt>Driving in</dt><dd>Carpark B<small>Then walk up the slope to Blk 7</small></dd></div>
 </dl>
 
 <!-- ================= CTA ================= -->
 <div class="cta">
   <a class="btn solid" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=15+C4I+Bn+6th+Anniversary+%E2%80%94+Launch+of+New+Facility+Ceremony&dates=20260915T114500/20260915T130000&ctz=Asia/Singapore&location=Clementi+Camp,+Blk+7+(Old+K9+Hill)&details=Launch+of+Panthera+HQ.+Arrival+of+Div+Comd+1145H.+Attire:+Smart+4.+Park+at+Carpark+B+and+walk+up+the+slope+to+Blk+7.">Calendar &middot; Part 1</a>
-  <a class="btn solid" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=15+C4I+Bn+6th+Anniversary+Celebration&dates=20260915T180000/20260915T210000&ctz=Asia/Singapore&location=Clementi+Camp,+Blk+7+(Old+K9+Hill)&details=Battalion+Anniversary+Celebration.+Opening+speech+1810H,+games+1820H,+dinner+1830H.+Admin+attire+(guests:+casual).+Park+at+Carpark+B+and+walk+up+the+slope+to+Blk+7.">Calendar &middot; Part 2</a>
+  <a class="btn solid" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=15+C4I+Bn+6th+Anniversary+Celebration&dates=20260915T180000/20260915T210000&ctz=Asia/Singapore&location=Clementi+Camp,+Blk+7+(Old+K9+Hill)&details=Battalion+Anniversary+Celebration.+Opening+speech+1810H,+activities+1820H,+dinner+1830H.+Admin+attire:+15C4I+BN+T-shirt+(guests:+casual).+Park+at+Carpark+B+and+walk+up+the+slope+to+Blk+7.">Calendar &middot; Part 2</a>
   <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Clementi+Camp,+Clementi+Avenue+6,+Singapore">Directions to Clementi Camp</a>
 </div>
 
 <p class="foot">
-  <b>15 C4I Battalion</b> &middot; Victory with Pride<br>
-  Clementi Camp, Blk 7 (Old K9 Hill) &middot; Smart 4 / Admin attire &middot; Carpark B<br>
-  <a href="celebration.html">Evening celebration only &rarr;</a>
+  <b>15 C4I Battalion</b> &middot; Victory with Pride
 </p>
 </div>
 
