@@ -60,6 +60,14 @@ h2{font-family:var(--disp);font-weight:600;font-size:19px;margin:38px 0 4px;lett
 .sub{font-size:13.5px;color:var(--cream-dim);margin-bottom:14px}
 .rule{height:1px;background:linear-gradient(90deg,var(--crimson),transparent);margin:6px 0 14px}
 
+/* attire */
+.attire{margin:16px 0 0;background:var(--crimson);border:1px solid var(--gold);border-radius:14px;padding:6px 16px;box-shadow:0 0 0 4px var(--maroon)}
+.attire div{display:grid;grid-template-columns:86px 1fr;align-items:baseline;gap:12px;padding:11px 0}
+.attire div+div{border-top:1px solid rgba(246,237,226,.22)}
+.attire dt{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
+.attire dd{font-family:var(--disp);font-weight:700;font-size:21px;line-height:1.15;color:var(--white)}
+.attire dd small{display:block;font-family:var(--body);font-weight:400;font-size:12.5px;color:var(--cream);opacity:.85;margin-top:2px}
+
 /* part cards */
 .parts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0}
 .part{display:block;text-decoration:none;color:var(--cream);background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:14px;padding:14px 12px 12px}
@@ -175,6 +183,11 @@ svg text{font-family:var(--mono)}
     <div><b id="cm">&ndash;</b><span>min</span></div>
     <div><b id="cs">&ndash;</b><span>sec</span></div>
   </div>
+  <dl class="attire">
+    <div><dt>Attire</dt><dd>Smart 4<small>Part 1 &middot; Launch of New Facility Ceremony</small></dd></div>
+    <div><dt>Attire</dt><dd>Admin<small>Part 2 &middot; Battalion Anniversary Celebration</small></dd></div>
+    <div><dt>Guests</dt><dd>Casual<small>Guests attend Part 2 only</small></dd></div>
+  </dl>
   <div class="parts">
     <a class="part" href="#part1">
       <span class="n">Part 1</span>
