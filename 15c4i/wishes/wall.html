@@ -65,7 +65,7 @@ body.show-cursor{cursor:default}
   <div class="meta"><b id="total">0 wishes</b><span><span class="dot" id="dot"></span><span id="status">connecting</span></span></div>
 </header>
 <main class="grid" id="grid"></main>
-<div class="foot"><span>Scan the QR code to add your wish</span><span>ur-b20.github.io/fon/15c4i/wishes &middot; <b id="page"></b></span></div>
+<div class="foot"><span>Scan the QR code to add your wish</span><span><b id="page"></b></span></div>
 
 <script src="config.js"></script>
 <script>
@@ -94,7 +94,7 @@ body.show-cursor{cursor:default}
       var e = el('div', 'empty');
       e.appendChild(el('h2', null, configured || DEMO ? 'Be the first to leave a wish' : 'Wall not connected yet'));
       var p = el('p', null, '');
-      if (configured || DEMO) p.textContent = 'Scan the QR code, write your wish and sign it. Approved wishes appear here.';
+      if (configured || DEMO) p.textContent = 'Scan the QR code, write your wish and sign it.';
       else { p.appendChild(document.createTextNode('Paste the Apps Script URL into ')); p.appendChild(el('code', null, 'config.js')); p.appendChild(document.createTextNode(' to connect the wall.')); }
       e.appendChild(p); grid.appendChild(e); return;
     }
