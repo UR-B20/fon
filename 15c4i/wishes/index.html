@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>15 C4I Wishes Wall — Pen your wish</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="15 C4I Battalion">
+<meta property="og:title" content="Pen down your well wishes for 15 C4I Battalion">
+<meta property="og:description" content="15 C4I Bn 6th Anniversary. Leave your name, your wish and your signature for the Wishes Wall.">
+<meta property="og:url" content="https://ur-b20.github.io/fon/15c4i/wishes/">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1F0507; --maroon:#3B0A0E; --crimson:#A0181F; --crimson-soft:#621016;
+  --cream:#F6EDE2; --cream-dim:#CFAFA8; --gold:#D9A94A; --gold-soft:#F0CC7A;
+  --white:#FFFFFF; --danger:#F07B6B;
+  --disp:'Cinzel',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--cream);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:460px;margin:0 auto;padding:0 18px 60px}
+a{color:var(--gold-soft)}
+
+.hero{padding:28px 0 6px}
+.crest{background:var(--white);border-radius:50%;width:110px;height:110px;padding:7px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 0 1px var(--crimson-soft),0 0 0 5px var(--maroon)}
+.crest img{display:block;width:100%;height:100%;object-fit:contain}
+.eyebrow{font-family:var(--disp);font-size:12px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(22px,6.4vw,28px);line-height:1.25;margin:8px 0 6px;text-wrap:balance}
+.sub{font-size:14px;color:var(--cream-dim);margin-bottom:18px}
+
+.banner{background:var(--maroon);border:1px solid var(--gold);border-radius:12px;padding:12px 14px;font-size:13.5px;margin:0 0 16px;display:none}
+.banner b{color:var(--gold)}
+.banner.show{display:block}
+
+.field{margin-top:18px}
+label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+label .opt{color:var(--cream-dim);letter-spacing:.08em;text-transform:none;margin-left:6px}
+input[type=text],textarea{width:100%;background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:12px;color:var(--cream);font-family:var(--body);font-size:16px;padding:13px 14px;outline:none;-webkit-appearance:none}
+input[type=text]:focus,textarea:focus{border-color:var(--gold)}
+textarea{min-height:130px;resize:vertical;line-height:1.5}
+.count{font-family:var(--mono);font-size:11px;color:var(--cream-dim);text-align:right;margin-top:6px}
+.count.max{color:var(--gold)}
+
+.sigbox{background:var(--cream);border:1px solid var(--crimson-soft);border-radius:14px;position:relative;overflow:hidden}
+.sigbox canvas{display:block;width:100%;height:180px;touch-action:none;cursor:crosshair}
+.sigbox .hint{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-family:var(--disp);font-size:15px;letter-spacing:.08em;color:#B79C95;pointer-events:none}
+.sigbox .line{position:absolute;left:18px;right:18px;bottom:34px;border-top:1px dashed #CBB3AC;pointer-events:none}
+.sigbox.inked .hint{display:none}
+.sigtools{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.sigtools span{font-size:12.5px;color:var(--cream-dim)}
+.sigtools button{font-family:var(--mono);font-size:11.5px;padding:7px 12px;border-radius:999px;border:1px solid var(--crimson-soft);background:transparent;color:var(--cream);cursor:pointer}
+
+.err{display:none;margin-top:16px;background:var(--maroon);border:1px solid var(--danger);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--cream)}
+.err.show{display:block}
+.err b{color:var(--danger)}
+
+.btn{display:block;width:100%;text-align:center;font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:.04em;padding:15px 12px;border-radius:12px;border:1px solid var(--gold);background:var(--gold);color:var(--ink);cursor:pointer;margin-top:22px}
+.btn[disabled]{opacity:.6;cursor:default}
+.btn.ghost{background:transparent;color:var(--cream);border-color:var(--crimson-soft);margin-top:10px}
+
+.done{display:none;text-align:center;padding:30px 0 10px}
+.done.show{display:block}
+.done .mark{width:74px;height:74px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:36px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-weight:700}
+.done h2{font-family:var(--disp);font-weight:600;font-size:22px;margin-bottom:8px}
+.done p{font-size:14.5px;color:var(--cream-dim)}
+.done .again{margin-top:22px}
+
+.foot{margin-top:34px;font-family:var(--mono);font-size:11px;color:var(--cream-dim);text-align:center;line-height:1.9}
+.foot b{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="crest"><img src="../logo.png" alt="15 C4I Battalion crest"></div>
+  <div class="eyebrow">15 C4I Battalion &middot; 6th Anniversary</div>
+  <h1>Pen down your well wishes and hopes for 15C4I Battalion.</h1>
+  <p class="sub">Your wish will appear on the Wishes Wall once the organisers have approved it.</p>
+</header>
+
+<div class="banner" id="cfgbanner"><b>Not connected yet.</b> The organiser still needs to paste the form address into config.js.</div>
+
+<form id="form" novalidate>
+  <div class="field">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" maxlength="40" autocomplete="name" placeholder="Your name" required>
+  </div>
+
+  <div class="field">
+    <label for="message">My wish / hope for 15C4I&hellip;</label>
+    <textarea id="message" name="message" maxlength="220" placeholder="Write your wish here" required></textarea>
+    <div class="count" id="count">0 / 220</div>
+  </div>
+
+  <div class="field">
+    <label>Signature <span class="opt">&middot; sign with your finger</span></label>
+    <div class="sigbox" id="sigbox">
+      <canvas id="sig" aria-label="Signature box"></canvas>
+      <div class="hint">SIGN HERE</div>
+      <div class="line"></div>
+    </div>
+    <div class="sigtools">
+      <span>Draw your signature inside the box.</span>
+      <button type="button" id="clear">Clear</button>
+    </div>
+  </div>
+
+  <div class="err" id="err"><b id="errhead">Hold on.</b> <span id="errmsg"></span></div>
+
+  <button type="submit" class="btn" id="submit">Post my wish</button>
+</form>
+
+<div class="done" id="done">
+  <div class="mark">&#10003;</div>
+  <h2>Thank you, <span id="doneName"></span></h2>
+  <p>Your wish is with the organisers and will appear on the Wishes Wall shortly.</p>
+  <button type="button" class="btn ghost again" id="again">Write another</button>
+</div>
+
+<p class="foot"><b>15 C4I Battalion</b> &middot; Victory with Pride</p>
+</div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var API = window.WISHES_API || '';
+  var configured = API && API.indexOf('PASTE_') === -1 && /^https:\/\//.test(API);
+  if (!configured) document.getElementById('cfgbanner').classList.add('show');
+
+  /* ---- character counter ---- */
+  var msg = document.getElementById('message'), count = document.getElementById('count');
+  function updateCount(){ var n = msg.value.length; count.textContent = n + ' / 220'; count.classList.toggle('max', n >= 220); }
+  msg.addEventListener('input', updateCount); updateCount();
+
+  /* ---- signature canvas ---- */
+  var box = document.getElementById('sigbox'), canvas = document.getElementById('sig'), ctx = canvas.getContext('2d');
+  var strokes = [], current = null, drawing = false, cssW = 0, cssH = 0;
+  var BG = '#F6EDE2', INK = '#1F0507';
+
+  function size(){
+    var r = canvas.getBoundingClientRect();
+    cssW = Math.max(1, Math.round(r.width)); cssH = Math.max(1, Math.round(r.height));
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(cssW * dpr); canvas.height = Math.round(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    redraw();
+  }
+  function paint(c, w, h, list, scale){
+    c.fillStyle = BG; c.fillRect(0, 0, w, h);
+    c.strokeStyle = INK; c.lineWidth = 2.6 * scale; c.lineCap = 'round'; c.lineJoin = 'round';
+    list.forEach(function(s){
+      if (!s.length) return;
+      c.beginPath(); c.moveTo(s[0].x * scale, s[0].y * scale);
+      if (s.length === 1) c.lineTo(s[0].x * scale + 0.1, s[0].y * scale);
+      for (var i = 1; i < s.length; i++) c.lineTo(s[i].x * scale, s[i].y * scale);
+      c.stroke();
+    });
+  }
+  function redraw(){ paint(ctx, cssW, cssH, strokes, 1); }
+  function pos(ev){ var r = canvas.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; }
+
+  canvas.addEventListener('pointerdown', function(ev){
+    ev.preventDefault(); drawing = true; current = [pos(ev)]; strokes.push(current);
+    try { canvas.setPointerCapture(ev.pointerId); } catch(e){}
+    box.classList.add('inked'); redraw();
+  });
+  canvas.addEventListener('pointermove', function(ev){
+    if (!drawing) return; ev.preventDefault();
+    var p = pos(ev); current.push(p);
+    ctx.strokeStyle = INK; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    var a = current[current.length - 2]; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+  });
+  function end(){ drawing = false; current = null; }
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end); canvas.addEventListener('pointerleave', end);
+  document.getElementById('clear').addEventListener('click', function(){ strokes = []; box.classList.remove('inked'); redraw(); });
+  window.addEventListener('resize', size);
+  size();
+
+  function hasInk(){ return strokes.some(function(s){ return s.length > 1; }); }
+  function exportSig(w, h, jpeg){
+    var off = document.createElement('canvas'); off.width = w; off.height = h;
+    var scale = Math.min(w / cssW, h / cssH);
+    var c = off.getContext('2d');
+    // centre the drawing in the export box
+    c.fillStyle = BG; c.fillRect(0, 0, w, h);
+    c.save(); c.translate((w - cssW * scale) / 2, (h - cssH * scale) / 2);
+    paint(c, cssW * scale, cssH * scale, strokes, scale); c.restore();
+    return jpeg ? off.toDataURL('image/jpeg', 0.6) : off.toDataURL('image/png');
+  }
+  function signatureData(){
+    var d = exportSig(400, 160, false);
+    if (d.length > 45000) d = exportSig(300, 120, false);
+    if (d.length > 45000) d = exportSig(300, 120, true);
+    return d;
+  }
+
+  /* ---- submit ---- */
+  var form = document.getElementById('form'), btn = document.getElementById('submit');
+  var err = document.getElementById('err'), errmsg = document.getElementById('errmsg');
+  function showErr(t, network){ document.getElementById('errhead').textContent = network ? 'Could not send.' : 'Hold on.'; errmsg.textContent = t; err.classList.add('show'); }
+  function hideErr(){ err.classList.remove('show'); }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault(); hideErr();
+    var name = document.getElementById('name').value.trim();
+    var message = msg.value.trim();
+    if (!name) { showErr('Please enter your name.'); document.getElementById('name').focus(); return; }
+    if (!message) { showErr('Please write your wish.'); msg.focus(); return; }
+    if (!hasInk()) { showErr('Please sign in the signature box.'); box.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    if (!configured) { showErr('The form is not connected yet. Please show this screen to an organiser.'); return; }
+
+    var payload = { name: name, message: message, signature: signatureData() };
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 25000) : null;
+    fetch(API, { method: 'POST', body: JSON.stringify(payload), signal: ctrl ? ctrl.signal : undefined })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (!res || !res.ok) throw new Error((res && res.error) || 'Unexpected reply');
+        document.getElementById('doneName').textContent = name;
+        form.style.display = 'none'; document.getElementById('done').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        try { localStorage.removeItem('wish-draft'); } catch(e){}
+      })
+      .catch(function(e){
+        try { localStorage.setItem('wish-draft', JSON.stringify({ name: name, message: message, at: Date.now() })); } catch(x){}
+        showErr((e && e.name === 'AbortError') ? 'The connection timed out. Check your signal and tap Post again.' : 'Please check your signal and tap Post again. If it keeps failing, show this screen to an organiser.', true);
+      })
+      .then(function(){ if (timer) clearTimeout(timer); btn.disabled = false; btn.textContent = 'Post my wish'; });
+  });
+
+  document.getElementById('again').addEventListener('click', function(){
+    form.reset(); updateCount(); strokes = []; box.classList.remove('inked'); redraw();
+    document.getElementById('done').classList.remove('show'); form.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>

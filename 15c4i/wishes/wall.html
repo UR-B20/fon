@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 C4I Wishes Wall</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1F0507; --maroon:#3B0A0E; --crimson:#A0181F; --crimson-soft:#621016;
+  --cream:#F6EDE2; --cream-dim:#CFAFA8; --gold:#D9A94A; --gold-soft:#F0CC7A; --white:#FFFFFF;
+  --disp:'Cinzel',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --gap:18px; --cols:4; --rows:3; --head:126px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:var(--ink) radial-gradient(ellipse at 50% 0%, #4A0D12 0%, var(--ink) 62%);color:var(--cream);font-family:var(--body);cursor:none}
+body.show-cursor{cursor:default}
+
+.head{height:var(--head);display:flex;align-items:center;gap:24px;padding:0 44px;border-bottom:1px solid var(--crimson-soft)}
+.crest{width:84px;height:84px;border-radius:50%;background:var(--white);padding:5px;box-shadow:0 0 0 4px var(--maroon);flex:none}
+.crest img{width:100%;height:100%;object-fit:contain;display:block}
+.title{flex:1;min-width:0}
+.title .eyebrow{font-family:var(--disp);font-size:14px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.title h1{font-family:var(--disp);font-weight:700;font-size:40px;line-height:1.05;margin-top:4px;letter-spacing:.01em}
+.meta{text-align:right;font-family:var(--mono);font-size:13px;color:var(--cream-dim);line-height:1.7}
+.meta b{display:block;font-family:var(--disp);font-size:20px;color:var(--gold);letter-spacing:.04em}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5FB37A;margin-right:6px;vertical-align:middle}
+.dot.off{background:#7A2A2A}
+
+.grid{height:calc(100vh - var(--head));padding:22px 44px 26px;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-template-rows:repeat(var(--rows),minmax(0,1fr));gap:var(--gap);transition:opacity .45s ease}
+.grid.fade{opacity:0}
+.card{background:var(--maroon);border:1px solid var(--crimson-soft);border-radius:18px;padding:18px 20px 16px;display:flex;flex-direction:column;min-height:0;position:relative;overflow:hidden}
+.card.new{border-color:var(--gold);box-shadow:0 0 0 2px rgba(217,169,74,.35),0 0 32px rgba(217,169,74,.28)}
+.card .name{font-family:var(--disp);font-weight:600;font-size:21px;color:var(--gold-soft);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .msg{font-size:18px;line-height:1.42;margin-top:8px;flex:1;min-height:0;overflow:hidden;white-space:pre-line;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.card .sig{margin-top:12px;height:64px;border-radius:10px;background:var(--cream);display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+.card .sig img{height:100%;width:auto;max-width:100%;object-fit:contain;display:block}
+.card .badge{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--gold);border-radius:6px;padding:2px 7px}
+
+.empty{grid-column:1/-1;grid-row:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream-dim)}
+.empty h2{font-family:var(--disp);font-weight:600;font-size:34px;color:var(--cream);margin-bottom:10px}
+.empty p{font-size:20px;max-width:640px;text-wrap:balance}
+.empty code{font-family:var(--mono);color:var(--gold-soft);font-size:20px}
+
+.foot{position:fixed;left:44px;right:44px;bottom:6px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--cream-dim);letter-spacing:.06em;pointer-events:none}
+.foot b{color:var(--gold)}
+@media (max-width:1400px){:root{--cols:3;--rows:3}}
+@media (max-width:900px){:root{--cols:2;--rows:4;--head:96px} .title h1{font-size:26px} .head{padding:0 20px;gap:14px} .grid{padding:14px 20px 22px} .crest{width:60px;height:60px} .meta{display:none}}
+@media (min-width:2400px){:root{--cols:5;--rows:4}}
+</style>
+</head>
+<body>
+<header class="head">
+  <div class="crest"><img src="../logo.png" alt="15 C4I Battalion crest"></div>
+  <div class="title">
+    <div class="eyebrow">15 C4I Battalion &middot; 6th Anniversary</div>
+    <h1>Wishes Wall</h1>
+  </div>
+  <div class="meta"><b id="total">0 wishes</b><span><span class="dot" id="dot"></span><span id="status">connecting</span></span></div>
+</header>
+<main class="grid" id="grid"></main>
+<div class="foot"><span>Scan the QR code to add your wish</span><span>ur-b20.github.io/fon/15c4i/wishes &middot; <b id="page"></b></span></div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var API = window.WISHES_API || '';
+  var POLL = Math.max(4000, +window.WISHES_POLL_MS || 10000);
+  var DEMO = /[?&]demo=1/.test(location.search);
+  var configured = API && API.indexOf('PASTE_') === -1 && /^https:\/\//.test(API);
+  var grid = document.getElementById('grid'), status = document.getElementById('status'), dot = document.getElementById('dot');
+  var items = [], known = {}, newUntil = {}, pageIdx = 0, lastRotate = Date.now(), firstLoad = true;
+
+  function perPage(){
+    var cs = getComputedStyle(document.documentElement);
+    return (+cs.getPropertyValue('--cols') || 4) * (+cs.getPropertyValue('--rows') || 3);
+  }
+  function safeSrc(s){ return /^data:image\/(png|jpeg);base64,[A-Za-z0-9+\/=]+$/.test(s) ? s : ''; }
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function render(){
+    var n = perPage(), pages = Math.max(1, Math.ceil(items.length / n));
+    if (pageIdx >= pages) pageIdx = 0;
+    grid.innerHTML = '';
+    document.getElementById('total').textContent = items.length + (items.length === 1 ? ' wish' : ' wishes');
+    document.getElementById('page').textContent = pages > 1 ? ('page ' + (pageIdx + 1) + ' / ' + pages) : '';
+    if (!items.length){
+      var e = el('div', 'empty');
+      e.appendChild(el('h2', null, configured || DEMO ? 'Be the first to leave a wish' : 'Wall not connected yet'));
+      var p = el('p', null, '');
+      if (configured || DEMO) p.textContent = 'Scan the QR code, write your wish and sign it. Approved wishes appear here.';
+      else { p.appendChild(document.createTextNode('Paste the Apps Script URL into ')); p.appendChild(el('code', null, 'config.js')); p.appendChild(document.createTextNode(' to connect the wall.')); }
+      e.appendChild(p); grid.appendChild(e); return;
+    }
+    // newest first; page 0 holds the latest wishes
+    var slice = items.slice(pageIdx * n, pageIdx * n + n), now = Date.now();
+    slice.forEach(function(w){
+      var c = el('article', 'card' + (newUntil[w.id] > now ? ' new' : ''));
+      if (newUntil[w.id] > now) c.appendChild(el('span', 'badge', 'New'));
+      c.appendChild(el('div', 'name', w.name));
+      c.appendChild(el('div', 'msg', w.message));
+      var s = el('div', 'sig'); var src = safeSrc(w.signature);
+      if (src){ var img = document.createElement('img'); img.alt = ''; img.src = src; s.appendChild(img); }
+      c.appendChild(s); grid.appendChild(c);
+    });
+  }
+  function swapTo(idx){
+    grid.classList.add('fade');
+    setTimeout(function(){ pageIdx = idx; render(); grid.classList.remove('fade'); }, 460);
+  }
+  function apply(list){
+    var fresh = [];
+    list.forEach(function(w){ if (!known[w.id]) { known[w.id] = 1; if (!firstLoad) fresh.push(w.id); } });
+    items = list.slice().sort(function(a, b){ return b.ts - a.ts; });
+    var now = Date.now();
+    fresh.forEach(function(id){ newUntil[id] = now + 60000; });
+    firstLoad = false;
+    if (fresh.length && pageIdx !== 0) { swapTo(0); lastRotate = Date.now(); } else render();
+  }
+
+  function setStatus(ok, text){ dot.classList.toggle('off', !ok); status.textContent = text; }
+
+  function poll(){
+    if (DEMO){ apply(demoData()); setStatus(true, 'demo'); return; }
+    if (!configured){ setStatus(false, 'not configured'); render(); return; }
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var t = ctrl ? setTimeout(function(){ ctrl.abort(); }, 20000) : null;
+    fetch(API + '?approved=1&t=' + Date.now(), { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined })
+      .then(function(r){ return r.json(); })
+      .then(function(list){ if (!Array.isArray(list)) throw new Error('bad'); apply(list); setStatus(true, 'live'); })
+      .catch(function(){ setStatus(false, 'offline · showing last update'); if (firstLoad) { firstLoad = false; render(); } })
+      .then(function(){ if (t) clearTimeout(t); });
+  }
+  poll(); setInterval(poll, POLL);
+
+  setInterval(function(){
+    var pages = Math.ceil(items.length / perPage());
+    if (pages > 1 && Date.now() - lastRotate >= 12000){ lastRotate = Date.now(); swapTo((pageIdx + 1) % pages); }
+  }, 1000);
+  window.addEventListener('resize', render);
+
+  document.addEventListener('click', function(){
+    var d = document.documentElement;
+    if (!document.fullscreenElement && d.requestFullscreen) d.requestFullscreen().catch(function(){});
+  });
+  var cursorTimer; document.addEventListener('mousemove', function(){
+    document.body.classList.add('show-cursor'); clearTimeout(cursorTimer);
+    cursorTimer = setTimeout(function(){ document.body.classList.remove('show-cursor'); }, 2500);
+  });
+
+  function demoSig(seed){
+    var c = document.createElement('canvas'); c.width = 400; c.height = 160; var x = c.getContext('2d');
+    x.fillStyle = '#F6EDE2'; x.fillRect(0, 0, 400, 160); x.strokeStyle = '#1F0507'; x.lineWidth = 5; x.lineCap = 'round'; x.lineJoin = 'round';
+    x.beginPath(); for (var i = 0; i <= 40; i++){ var px = 40 + i * 8, py = 90 + Math.sin(i * 0.55 + seed) * 28 * Math.cos(i * 0.13 + seed); i ? x.lineTo(px, py) : x.moveTo(px, py); } x.stroke();
+    return c.toDataURL('image/png');
+  }
+  function demoData(){
+    var names = ['CPT Tan Wei Ming', 'ME3 Nurul Aisyah', '3SG Marcus Lim', 'Mdm Rosnah', 'LTA Chua Kai Xin', 'MAJ Rajesh Kumar', 'CFC Daniel Ong', 'Ms Priya Nair', 'ME2 Goh Jun Hao', 'Mr Ahmad Fauzi', 'CPL Sarah Wong', 'LTC (Ret) Bernard Lee', 'ME1 Jasmine Koh', 'PTE Ethan Yeo'];
+    var msgs = ['Six years strong. Proud to have served alongside every one of you. Victory with Pride!', 'May Panthera HQ be the home of many more victories to come.', 'Happy 6th anniversary! Keep the comms clear and the spirit high.', 'Wishing the battalion continued excellence and safe operations always.', 'From the first day at Old K9 Hill to today. What a journey. Onwards!', 'To the finest signallers and operators. Stay sharp, stay united.', 'Grateful for the friendships built here. Here is to many more years.', 'May every mission end in victory and every soldier come home safe.', 'Thank you for welcoming families into the 15 C4I story. Happy anniversary!', 'Six down, many more to go. Roar on, Panthera!', 'Proud of how far we have come. Prouder of where we are going.', 'Strength in unity, clarity in command. Happy anniversary 15 C4I.', 'Keep the pride, keep the passion. Congratulations on six great years.', 'From a new recruit: honoured to be part of this family.'];
+    var out = []; for (var i = 0; i < 14; i++) out.push({ id: 'demo' + i, name: names[i], message: msgs[i], signature: demoSig(i), ts: 1000 + i });
+    return out;
+  }
+})();
+</script>
+</body>
+</html>

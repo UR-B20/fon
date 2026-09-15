@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 C4I Wishes Wall — Poster</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1F0507; --maroon:#3B0A0E; --crimson:#A0181F; --crimson-soft:#621016;
+  --cream:#F6EDE2; --paper:#FBF7F0; --gold:#B8862C; --gold-soft:#D9A94A; --white:#FFFFFF;
+  --disp:'Cinzel',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+@page{size:A1 portrait;margin:15mm}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#5a5a5a}
+body{font-family:var(--body);color:var(--ink);background:#5a5a5a}
+.sheet{width:594mm;min-height:841mm;margin:12mm auto;background:var(--paper);padding:15mm;box-shadow:0 8mm 30mm rgba(0,0,0,.35)}
+.head{display:flex;align-items:center;gap:14mm;padding-bottom:9mm;border-bottom:1.2mm solid var(--crimson);margin-bottom:10mm}
+.crest{width:58mm;height:58mm;flex:none}
+.crest img{width:100%;height:100%;object-fit:contain;display:block}
+.title .eyebrow{font-family:var(--disp);font-size:18pt;letter-spacing:.24em;color:var(--crimson);text-transform:uppercase}
+.title h1{font-family:var(--disp);font-weight:700;font-size:64pt;line-height:1;margin-top:3mm;color:var(--ink)}
+.title p{font-family:var(--mono);font-size:13pt;color:#6B4B47;margin-top:4mm;letter-spacing:.06em}
+.grid{columns:5;column-gap:7mm}
+.card{break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;background:var(--white);border:0.5mm solid var(--crimson);border-radius:5mm;padding:6mm 7mm 6mm;margin:0 0 7mm;display:inline-block;width:100%}
+.card .name{font-family:var(--disp);font-weight:600;font-size:14.5pt;color:var(--crimson);line-height:1.2}
+.card .msg{font-size:12.5pt;line-height:1.4;margin-top:2.5mm;white-space:pre-line;text-wrap:pretty}
+.card .sig{margin-top:3.5mm;height:24mm;border-top:0.3mm dashed #CBB3AC;padding-top:2mm;display:flex;align-items:center}
+.card .sig img{height:100%;width:auto;max-width:100%;object-fit:contain;display:block;mix-blend-mode:multiply}
+.foot{margin-top:8mm;padding-top:5mm;border-top:0.4mm solid var(--crimson-soft);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11pt;color:#6B4B47;letter-spacing:.08em}
+.empty{padding:40mm 0;text-align:center;font-family:var(--disp);font-size:24pt;color:#8a6a66}
+
+.toolbar{position:fixed;top:14px;right:14px;display:flex;gap:8px;align-items:center;font-family:var(--body);z-index:5}
+.toolbar span{background:var(--maroon);color:var(--cream);border-radius:10px;padding:10px 14px;font-size:13px}
+.toolbar button{font-family:var(--disp);font-weight:600;font-size:14px;letter-spacing:.04em;padding:12px 18px;border-radius:10px;border:1px solid var(--gold-soft);background:var(--gold-soft);color:var(--ink);cursor:pointer}
+.toolbar button.ghost{background:var(--maroon);color:var(--cream);border-color:var(--crimson-soft)}
+@media print{
+  html,body{background:var(--paper)}
+  .sheet{width:auto;min-height:0;margin:0;padding:0;box-shadow:none}
+  .toolbar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span id="status">Loading wishes&hellip;</span>
+  <button type="button" class="ghost" id="reload">Reload</button>
+  <button type="button" id="print">Print / Save as PDF</button>
+</div>
+
+<div class="sheet">
+  <header class="head">
+    <div class="crest"><img src="../logo.png" alt="15 C4I Battalion crest"></div>
+    <div class="title">
+      <div class="eyebrow">15 C4I Battalion &middot; 6th Anniversary</div>
+      <h1>Wishes Wall</h1>
+      <p>Well wishes and hopes for 15 C4I Battalion &middot; 15 September 2026 &middot; Clementi Camp</p>
+    </div>
+  </header>
+  <main class="grid" id="grid"></main>
+  <footer class="foot"><span>15 C4I Battalion &middot; Victory with Pride</span><span id="count"></span></footer>
+</div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var API = window.WISHES_API || '';
+  var DEMO = /[?&]demo=1/.test(location.search);
+  var configured = API && API.indexOf('PASTE_') === -1 && /^https:\/\//.test(API);
+  var grid = document.getElementById('grid'), status = document.getElementById('status');
+  function safeSrc(s){ return /^data:image\/(png|jpeg);base64,[A-Za-z0-9+\/=]+$/.test(s) ? s : ''; }
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function render(list){
+    list = list.slice().sort(function(a, b){ return a.ts - b.ts; });
+    grid.innerHTML = '';
+    document.getElementById('count').textContent = list.length + (list.length === 1 ? ' wish' : ' wishes');
+    if (!list.length){ grid.appendChild(el('div', 'empty', 'No approved wishes yet.')); return; }
+    list.forEach(function(w){
+      var c = el('article', 'card');
+      c.appendChild(el('div', 'name', w.name));
+      c.appendChild(el('div', 'msg', w.message));
+      var s = el('div', 'sig'); var src = safeSrc(w.signature);
+      if (src){ var img = document.createElement('img'); img.alt = ''; img.src = src; s.appendChild(img); }
+      c.appendChild(s); grid.appendChild(c);
+    });
+  }
+  function load(){
+    if (DEMO){ render(demoData()); status.textContent = 'Demo data'; return; }
+    if (!configured){ render([]); status.textContent = 'Not connected: paste the Apps Script URL into config.js'; return; }
+    status.textContent = 'Loading wishes…';
+    fetch(API + '?approved=1&t=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(list){ if (!Array.isArray(list)) throw new Error('bad'); render(list); status.textContent = list.length + ' approved wishes loaded'; })
+      .catch(function(){ status.textContent = 'Could not load. Check the connection and press Reload.'; });
+  }
+  document.getElementById('reload').addEventListener('click', load);
+  document.getElementById('print').addEventListener('click', function(){ window.print(); });
+  load();
+
+  function demoSig(seed){
+    var c = document.createElement('canvas'); c.width = 400; c.height = 160; var x = c.getContext('2d');
+    x.fillStyle = '#F6EDE2'; x.fillRect(0, 0, 400, 160); x.strokeStyle = '#1F0507'; x.lineWidth = 5; x.lineCap = 'round'; x.lineJoin = 'round';
+    x.beginPath(); for (var i = 0; i <= 40; i++){ var px = 40 + i * 8, py = 90 + Math.sin(i * 0.55 + seed) * 28 * Math.cos(i * 0.13 + seed); i ? x.lineTo(px, py) : x.moveTo(px, py); } x.stroke();
+    return c.toDataURL('image/png');
+  }
+  function demoData(){
+    var out = [];
+    var msgs = ['Six years strong. Proud to have served alongside every one of you. Victory with Pride!', 'May Panthera HQ be the home of many more victories to come.', 'Happy 6th anniversary! Keep the comms clear and the spirit high.', 'From the first day at Old K9 Hill to today. What a journey. Onwards!', 'May every mission end in victory and every soldier come home safe.', 'Six down, many more to go. Roar on, Panthera!'];
+    for (var i = 0; i < 60; i++) out.push({ id: 'd' + i, name: 'Guest ' + (i + 1), message: msgs[i % msgs.length], signature: demoSig(i), ts: i });
+    return out;
+  }
+})();
+</script>
+</body>
+</html>
