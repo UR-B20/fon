@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 C4I Wishes Wall — QR Poster</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1F0507; --maroon:#3B0A0E; --crimson:#A0181F; --crimson-soft:#621016;
+  --cream:#F6EDE2; --cream-dim:#CFAFA8; --paper:#FBF7F0; --gold:#D9A94A; --gold-soft:#F0CC7A; --gold-ink:#B8862C; --white:#FFFFFF;
+  --disp:'Cinzel',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  /* dark theme (default) */
+  --bg:var(--ink); --fg:var(--cream); --muted:var(--cream-dim); --accent:var(--gold); --rule:var(--crimson-soft); --panel:var(--maroon);
+}
+body.light{ --bg:var(--paper); --fg:var(--ink); --muted:#6B4B47; --accent:var(--crimson); --rule:var(--crimson); --panel:var(--white); }
+@page{size:A4 portrait;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#5a5a5a}
+body{font-family:var(--body);background:#5a5a5a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.sheet{width:210mm;height:297mm;margin:12mm auto;background:var(--bg);color:var(--fg);padding:16mm 16mm 14mm;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 6mm 24mm rgba(0,0,0,.35);position:relative;overflow:hidden}
+.frame{position:absolute;inset:7mm;border:0.4mm solid var(--rule);pointer-events:none}
+.frame:after{content:"";position:absolute;inset:1.6mm;border:0.2mm solid var(--rule);opacity:.55}
+
+.crest{background:var(--white);border-radius:50%;width:38mm;height:38mm;padding:2.5mm;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0.3mm var(--crimson-soft),0 0 0 1.6mm var(--panel);margin-top:2mm}
+.crest img{display:block;width:100%;height:100%;object-fit:contain}
+.eyebrow{font-family:var(--disp);font-size:11.5pt;letter-spacing:.26em;color:var(--accent);text-transform:uppercase;margin-top:9mm}
+h1{font-family:var(--disp);font-weight:700;font-size:44pt;line-height:1;margin-top:3mm;letter-spacing:.01em}
+.lead{font-size:14.5pt;line-height:1.4;color:var(--fg);margin-top:5mm;max-width:150mm;text-wrap:balance}
+.lead b{color:var(--accent);font-weight:600}
+
+.qrbox{background:var(--white);border:0.6mm solid var(--crimson);border-radius:5mm;padding:5mm;margin-top:9mm;box-shadow:0 0 0 1.6mm var(--panel)}
+.qrbox svg{display:block;width:92mm;height:92mm}
+.url{font-family:var(--mono);font-size:10.5pt;letter-spacing:.06em;color:var(--muted);margin-top:5mm}
+
+.steps{display:flex;gap:7mm;margin-top:9mm;width:100%;max-width:168mm}
+.step{flex:1;border-top:0.4mm solid var(--rule);padding-top:3.5mm}
+.step .n{font-family:var(--disp);font-weight:700;font-size:18pt;color:var(--accent);line-height:1}
+.step .t{font-size:11pt;line-height:1.35;margin-top:1.5mm}
+
+.foot{margin-top:auto;font-family:var(--mono);font-size:9.5pt;letter-spacing:.1em;color:var(--muted);line-height:1.9;padding-top:6mm}
+.foot b{color:var(--accent);font-weight:500}
+
+.toolbar{position:fixed;top:14px;right:14px;display:flex;gap:8px;align-items:center;font-family:var(--body);z-index:5}
+.toolbar button{font-family:var(--disp);font-weight:600;font-size:14px;letter-spacing:.04em;padding:12px 18px;border-radius:10px;border:1px solid var(--gold-soft);background:var(--gold-soft);color:var(--ink);cursor:pointer}
+.toolbar button.ghost{background:var(--maroon);color:var(--cream);border-color:var(--crimson-soft)}
+@media print{
+  html,body{background:none}
+  .sheet{width:210mm;height:297mm;margin:0;box-shadow:none;page-break-after:avoid}
+  .toolbar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button type="button" class="ghost" id="theme">Light version</button>
+  <button type="button" id="print">Print / Save as PDF</button>
+</div>
+
+<div class="sheet">
+  <div class="frame"></div>
+  <div class="crest"><img src="../logo.png" alt="15 C4I Battalion crest"></div>
+  <div class="eyebrow">15 C4I Battalion &middot; 6th Anniversary</div>
+  <h1>Wishes Wall</h1>
+  <p class="lead"><b>Scan to pen your well wishes</b> and hopes for 15 C4I Battalion. Your wish will appear on the Wishes Wall.</p>
+
+  <div class="qrbox">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 45 45" shape-rendering="crispEdges" role="img" aria-label="QR code linking to the 15 C4I Wishes Wall form">
+      <rect x="-4" y="-4" width="45" height="45" fill="#FFFFFF"/>
+      <path fill="#1F0507" d="M0 0h7v1h-7zM8 0h2v1h-2zM13 0h1v1h-1zM15 0h2v1h-2zM19 0h2v1h-2zM22 0h4v1h-4zM28 0h1v1h-1zM30 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h2v1h-2zM15 1h6v1h-6zM25 1h3v1h-3zM30 1h1v1h-1zM36 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h2v1h-2zM11 2h3v1h-3zM15 2h2v1h-2zM18 2h1v1h-1zM24 2h1v1h-1zM26 2h3v1h-3zM30 2h1v1h-1zM32 2h3v1h-3zM36 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM11 3h2v1h-2zM16 3h3v1h-3zM21 3h2v1h-2zM25 3h1v1h-1zM27 3h1v1h-1zM30 3h1v1h-1zM32 3h3v1h-3zM36 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h4v1h-4zM18 4h2v1h-2zM23 4h1v1h-1zM26 4h1v1h-1zM30 4h1v1h-1zM32 4h3v1h-3zM36 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM13 5h1v1h-1zM15 5h1v1h-1zM19 5h1v1h-1zM21 5h2v1h-2zM25 5h1v1h-1zM27 5h2v1h-2zM30 5h1v1h-1zM36 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h7v1h-7zM8 7h1v1h-1zM10 7h2v1h-2zM14 7h1v1h-1zM16 7h1v1h-1zM18 7h3v1h-3zM22 7h1v1h-1zM24 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM2 8h3v1h-3zM6 8h1v1h-1zM8 8h1v1h-1zM12 8h4v1h-4zM22 8h2v1h-2zM25 8h1v1h-1zM28 8h4v1h-4zM34 8h3v1h-3zM4 9h1v1h-1zM7 9h1v1h-1zM11 9h1v1h-1zM17 9h1v1h-1zM19 9h1v1h-1zM23 9h3v1h-3zM28 9h2v1h-2zM31 9h1v1h-1zM33 9h2v1h-2zM0 10h1v1h-1zM3 10h2v1h-2zM6 10h2v1h-2zM12 10h2v1h-2zM15 10h1v1h-1zM19 10h4v1h-4zM25 10h4v1h-4zM30 10h2v1h-2zM35 10h2v1h-2zM0 11h1v1h-1zM2 11h2v1h-2zM5 11h1v1h-1zM8 11h1v1h-1zM10 11h3v1h-3zM14 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM23 11h1v1h-1zM26 11h3v1h-3zM30 11h1v1h-1zM32 11h2v1h-2zM1 12h3v1h-3zM5 12h2v1h-2zM9 12h1v1h-1zM11 12h1v1h-1zM14 12h2v1h-2zM18 12h2v1h-2zM24 12h4v1h-4zM29 12h2v1h-2zM32 12h4v1h-4zM0 13h1v1h-1zM2 13h4v1h-4zM9 13h5v1h-5zM16 13h2v1h-2zM21 13h1v1h-1zM23 13h1v1h-1zM25 13h2v1h-2zM29 13h1v1h-1zM31 13h1v1h-1zM33 13h2v1h-2zM0 14h3v1h-3zM4 14h1v1h-1zM6 14h5v1h-5zM14 14h1v1h-1zM16 14h1v1h-1zM18 14h5v1h-5zM27 14h1v1h-1zM29 14h1v1h-1zM31 14h3v1h-3zM35 14h2v1h-2zM0 15h1v1h-1zM2 15h2v1h-2zM5 15h1v1h-1zM7 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM17 15h3v1h-3zM21 15h1v1h-1zM28 15h1v1h-1zM31 15h2v1h-2zM35 15h2v1h-2zM1 16h3v1h-3zM5 16h3v1h-3zM9 16h1v1h-1zM13 16h1v1h-1zM15 16h1v1h-1zM17 16h1v1h-1zM19 16h5v1h-5zM25 16h2v1h-2zM28 16h3v1h-3zM32 16h1v1h-1zM34 16h2v1h-2zM0 17h1v1h-1zM3 17h2v1h-2zM10 17h2v1h-2zM13 17h8v1h-8zM22 17h2v1h-2zM26 17h1v1h-1zM28 17h1v1h-1zM33 17h1v1h-1zM0 18h1v1h-1zM5 18h4v1h-4zM10 18h2v1h-2zM14 18h1v1h-1zM16 18h1v1h-1zM19 18h1v1h-1zM27 18h4v1h-4zM33 18h4v1h-4zM0 19h1v1h-1zM3 19h2v1h-2zM7 19h1v1h-1zM9 19h2v1h-2zM14 19h1v1h-1zM16 19h3v1h-3zM20 19h4v1h-4zM26 19h2v1h-2zM33 19h1v1h-1zM1 20h2v1h-2zM6 20h7v1h-7zM14 20h2v1h-2zM23 20h1v1h-1zM25 20h1v1h-1zM29 20h4v1h-4zM34 20h1v1h-1zM0 21h5v1h-5zM12 21h1v1h-1zM15 21h1v1h-1zM19 21h1v1h-1zM22 21h1v1h-1zM24 21h3v1h-3zM31 21h1v1h-1zM33 21h2v1h-2zM0 22h2v1h-2zM4 22h1v1h-1zM6 22h4v1h-4zM13 22h2v1h-2zM21 22h1v1h-1zM25 22h3v1h-3zM30 22h1v1h-1zM35 22h2v1h-2zM1 23h3v1h-3zM5 23h1v1h-1zM7 23h1v1h-1zM9 23h1v1h-1zM13 23h3v1h-3zM17 23h1v1h-1zM19 23h3v1h-3zM24 23h1v1h-1zM26 23h1v1h-1zM29 23h1v1h-1zM31 23h1v1h-1zM36 23h1v1h-1zM2 24h2v1h-2zM5 24h2v1h-2zM9 24h1v1h-1zM11 24h3v1h-3zM16 24h2v1h-2zM19 24h2v1h-2zM22 24h3v1h-3zM29 24h2v1h-2zM32 24h5v1h-5zM0 25h3v1h-3zM4 25h2v1h-2zM7 25h1v1h-1zM9 25h2v1h-2zM12 25h1v1h-1zM15 25h1v1h-1zM18 25h3v1h-3zM22 25h1v1h-1zM28 25h1v1h-1zM31 25h1v1h-1zM34 25h1v1h-1zM0 26h1v1h-1zM3 26h5v1h-5zM12 26h2v1h-2zM15 26h5v1h-5zM21 26h4v1h-4zM26 26h2v1h-2zM30 26h3v1h-3zM34 26h1v1h-1zM36 26h1v1h-1zM0 27h1v1h-1zM2 27h2v1h-2zM8 27h2v1h-2zM11 27h1v1h-1zM14 27h4v1h-4zM22 27h2v1h-2zM26 27h2v1h-2zM29 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM4 28h5v1h-5zM13 28h2v1h-2zM19 28h1v1h-1zM21 28h3v1h-3zM25 28h2v1h-2zM28 28h5v1h-5zM34 28h1v1h-1zM36 28h1v1h-1zM8 29h2v1h-2zM16 29h4v1h-4zM21 29h4v1h-4zM26 29h3v1h-3zM32 29h1v1h-1zM0 30h7v1h-7zM11 30h1v1h-1zM15 30h3v1h-3zM21 30h1v1h-1zM26 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h2v1h-2zM36 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM12 31h1v1h-1zM15 31h1v1h-1zM17 31h2v1h-2zM20 31h2v1h-2zM23 31h2v1h-2zM26 31h1v1h-1zM28 31h1v1h-1zM32 31h1v1h-1zM0 32h1v1h-1zM2 32h3v1h-3zM6 32h1v1h-1zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h1v1h-1zM17 32h2v1h-2zM20 32h3v1h-3zM24 32h9v1h-9zM34 32h1v1h-1zM36 32h1v1h-1zM0 33h1v1h-1zM2 33h3v1h-3zM6 33h1v1h-1zM8 33h1v1h-1zM10 33h1v1h-1zM13 33h1v1h-1zM15 33h2v1h-2zM20 33h1v1h-1zM24 33h1v1h-1zM28 33h1v1h-1zM30 33h1v1h-1zM32 33h2v1h-2zM0 34h1v1h-1zM2 34h3v1h-3zM6 34h1v1h-1zM8 34h1v1h-1zM10 34h1v1h-1zM15 34h2v1h-2zM20 34h2v1h-2zM24 34h1v1h-1zM26 34h1v1h-1zM28 34h2v1h-2zM33 34h2v1h-2zM36 34h1v1h-1zM0 35h1v1h-1zM6 35h1v1h-1zM12 35h1v1h-1zM17 35h1v1h-1zM19 35h2v1h-2zM22 35h1v1h-1zM24 35h1v1h-1zM26 35h8v1h-8zM36 35h1v1h-1zM0 36h7v1h-7zM9 36h11v1h-11zM21 36h1v1h-1zM24 36h3v1h-3zM29 36h1v1h-1zM31 36h2v1h-2zM34 36h3v1h-3z"/>
+    </svg>
+  </div>
+  <div class="url">ur-b20.github.io/fon/15c4i/wishes</div>
+
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div class="t">Point your phone camera at the code</div></div>
+    <div class="step"><div class="n">2</div><div class="t">Write your name and your wish</div></div>
+    <div class="step"><div class="n">3</div><div class="t">Sign with your finger and post</div></div>
+  </div>
+
+  <footer class="foot">15 September 2026 &middot; Clementi Camp<br><b>Victory with Pride</b></footer>
+</div>
+
+<script>
+(function(){
+  var body = document.body, btn = document.getElementById('theme');
+  if (/[?&]light=1/.test(location.search)) body.classList.add('light');
+  function label(){ btn.textContent = body.classList.contains('light') ? 'Dark version' : 'Light version'; }
+  btn.addEventListener('click', function(){ body.classList.toggle('light'); label(); });
+  document.getElementById('print').addEventListener('click', function(){ window.print(); });
+  label();
+})();
+</script>
+</body>
+</html>
