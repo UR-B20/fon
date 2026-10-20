@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 C4I Wishes Wall — QR Poster</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000000; --mid:#444444; --rule:#000000; --white:#FFFFFF;
+  --disp:'Cinzel',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+@page{size:A4 portrait;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:#5a5a5a}
+body{font-family:var(--body);background:#5a5a5a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+.sheet{width:210mm;height:297mm;margin:12mm auto;background:var(--white);color:var(--ink);padding:16mm 16mm 14mm;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 6mm 24mm rgba(0,0,0,.35);position:relative;overflow:hidden}
+.frame{position:absolute;inset:7mm;border:0.4mm solid var(--rule);pointer-events:none}
+.frame:after{content:"";position:absolute;inset:1.6mm;border:0.2mm solid var(--rule)}
+
+.crest{width:38mm;height:38mm;margin-top:2mm}
+.crest img{display:block;width:100%;height:100%;object-fit:contain;filter:grayscale(1)}
+.eyebrow{font-family:var(--disp);font-size:11.5pt;letter-spacing:.26em;color:var(--ink);text-transform:uppercase;margin-top:9mm}
+h1{font-family:var(--disp);font-weight:700;font-size:44pt;line-height:1;margin-top:3mm;letter-spacing:.01em}
+.lead{font-size:14.5pt;line-height:1.4;margin-top:5mm;max-width:150mm;text-wrap:balance}
+.lead b{font-weight:600}
+
+.qr{display:block;width:106mm;height:auto;margin-top:8mm;border:0.5mm solid var(--rule);border-radius:3mm}
+
+.steps{display:flex;gap:7mm;margin-top:9mm;width:100%;max-width:168mm}
+.step{flex:1;border-top:0.4mm solid var(--rule);padding-top:3.5mm}
+.step .n{font-family:var(--disp);font-weight:700;font-size:18pt;line-height:1}
+.step .t{font-size:11pt;line-height:1.35;margin-top:1.5mm}
+
+.foot{margin-top:auto;font-family:var(--mono);font-size:9.5pt;letter-spacing:.1em;color:var(--mid);line-height:1.9;padding-top:6mm}
+.foot b{color:var(--ink);font-weight:500}
+
+.toolbar{position:fixed;top:14px;right:14px;font-family:var(--body);z-index:5}
+.toolbar button{font-family:var(--disp);font-weight:600;font-size:14px;letter-spacing:.04em;padding:12px 18px;border-radius:10px;border:1px solid #000;background:#000;color:#fff;cursor:pointer}
+@media print{
+  html,body{background:none}
+  .sheet{width:210mm;height:297mm;margin:0;box-shadow:none;page-break-after:avoid}
+  .toolbar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button type="button" id="print">Print / Save as PDF</button>
+</div>
+
+<div class="sheet">
+  <div class="frame"></div>
+  <div class="crest"><img src="../logo.png" alt="15 C4I Battalion crest"></div>
+  <div class="eyebrow">15 C4I Battalion &middot; 6th Anniversary</div>
+  <h1>Wishes Wall</h1>
+  <p class="lead"><b>Scan to pen your well wishes</b> and hopes for 15 C4I Battalion. Your wish will appear on the Wishes Wall.</p>
+
+  <img class="qr" src="qr-15c4iwishes.svg" alt="QR code for https://go.gov.sg/15c4iwishes, the 15 C4I Wishes Wall form">
+
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div class="t">Point your phone camera at the code</div></div>
+    <div class="step"><div class="n">2</div><div class="t">Write your name and your wish</div></div>
+    <div class="step"><div class="n">3</div><div class="t">Sign with your finger and post</div></div>
+  </div>
+
+  <footer class="foot">Clementi Camp<br><b>Victory with Pride</b></footer>
+</div>
+
+<script>
+document.getElementById('print').addEventListener('click', function(){ window.print(); });
+</script>
+</body>
+</html>
