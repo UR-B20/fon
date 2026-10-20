@@ -4,7 +4,7 @@ Guests scan a QR code, write a wish and sign with a finger. Each wish goes to yo
 
 | Page | Address | Use |
 |---|---|---|
-| Form (QR target) | `https://ur-b20.github.io/fon/15c4i/wishes/` | Guests' phones |
+| Form (QR target) | `https://ur-b20.github.io/fon/15c4i/wishes/` | Guests' phones. Short link: `https://go.gov.sg/15c4iwishes` |
 | Wall | `https://ur-b20.github.io/fon/15c4i/wishes/wall.html` | TV / projector laptop. Click once for fullscreen. Add `?demo=1` to preview with sample wishes. |
 | QR poster | `https://ur-b20.github.io/fon/15c4i/wishes/qr.html` | Before the event: Print → Save as PDF → A4 (or A3, scale to fit). Put up at the venue. |
 | Wishes poster | `https://ur-b20.github.io/fon/15c4i/wishes/print.html` | After the event: Print → Save as PDF → A1 |
@@ -18,7 +18,7 @@ Guests scan a QR code, write a wish and sign with a finger. Each wish goes to yo
 5. **Deploy** → New deployment → type **Web app** → Execute as **Me** → Who has access **Anyone** → Deploy. Copy the Web app URL (ends in `/exec`).
 6. On GitHub open `15c4i/wishes/config.js`, press the pencil, paste the URL between the quotes, commit to main.
 7. Wait a minute for the site to update. Open the form on your phone, post a test wish, tap **Approve** in Telegram, and open the wall page on the TV laptop. The wish should appear within 10 seconds.
-8. Open `qr.html` on a laptop, press **Print / Save as PDF**, turn on **Background graphics**, save. The QR code on it points to the form. Press **Light version** first if you want a white poster that uses less ink. Print as many copies as the venue needs.
+8. Open `qr.html` on a laptop, press **Print / Save as PDF**, turn on **Background graphics**, save. The QR code on it is the official go.gov.sg one for `https://go.gov.sg/15c4iwishes`, which redirects to the form. If the short link is ever repointed, the poster does not need to change. Press **Light version** first if you want a white poster that uses less ink. Print as many copies as the venue needs.
 
 ## During the event
 
